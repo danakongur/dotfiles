@@ -90,7 +90,7 @@ focus_follows_mouse no
     bindsym --to-code $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 
 # lock screen
-bindsym --to-code $mod+m exec swaylock
+bindsym --to-code $mod+m exec swaylock -c 000000
 
 #
 # Moving around:
@@ -227,7 +227,7 @@ for_window [app_id="gscreenshot"] floating enable
 #
 # Read `man 5 sway-bar` for more information about this section.
 bar {
-    position top
+    position bottom
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
