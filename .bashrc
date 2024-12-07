@@ -114,6 +114,8 @@ alias dotf='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 
 alias simsmods="cd /home/danakongur/.local/share/Steam/steamapps/compatdata/1222670/pfx/drive_c/users/steamuser/Documents/'Electronic Arts'/'The Sims 4'/"
 
+export GIT_EDITOR=vim
+
 export CLASSPATH=$CLASSPATH:/home/danakongur/Documents/HR/reiknirit/algs4.jar
 
 function comp(){
