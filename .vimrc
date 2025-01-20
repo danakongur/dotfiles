@@ -176,6 +176,7 @@ call plug#begin()
 
 Plug 'tpope/vim-sensible'
 Plug 'townk/vim-autoclose'
+Plug 'prabirshrestha/vim-lsp'
 
 call plug#end()
 
