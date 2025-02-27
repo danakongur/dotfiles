@@ -1,6 +1,10 @@
 #waybar {
 	/*background: rgba(56,41,51,.7);*/
-	background: rgba(0,0,0,0);
+	/*background: rgba(0,0,0,0);*/
+	background: rgb(0,0,0);
+	background: linear-gradient(0deg, rgba(0,0,0,0.5872549703475141) 0%, rgba(255,255,255,0) 100%);
+	 /*the gaydient: background: rgb(255,0,0);
+background: linear-gradient(90deg, rgba(255,0,0,1) 0%, rgba(255,247,38,1) 15%, rgba(122,255,79,1) 31%, rgba(125,255,252,1) 49%, rgba(148,155,255,1) 58%, rgba(232,176,255,1) 69%, rgba(253,196,255,1) 77%, rgba(255,255,255,1) 100%);*/
 	color: #ffffff;
 }
 
@@ -41,6 +45,14 @@
 
 #clock,#cpu,#memory,#pulseaudio,#tray,#idle_inhibitor,#window {
 	margin: 0 5px;
+}
+
+#temperature {
+	
+}
+
+#temperature.critical {
+	color: #ff6666;
 }
 
 /*@keyframes blink {

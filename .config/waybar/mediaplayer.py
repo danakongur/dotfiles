@@ -14,6 +14,8 @@ from typing import List
 
 logger = logging.getLogger(__name__)
 
+MAXLEN = 40
+
 def signal_handler(sig, frame):
     logger.info("Received signal to stop, exiting")
     sys.stdout.write("\n")
@@ -122,7 +124,7 @@ class PlayerManager:
             track_info = f"{artist} - {title}"
         else:
             track_info = title
-
+        track_info = track_info[0:min(MAXLEN,len(track_info))]
         if track_info:
             if player.props.status == "Playing":
                 track_info = " " + track_info

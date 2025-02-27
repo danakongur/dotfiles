@@ -4,8 +4,8 @@
 	"height": 24,
 	"spacing": 5,
 	"modules-left": ["sway/workspaces","sway/mode","custom/media"],
-	"modules-center": ["sway/window", "custom/spotify"],
-	"modules-right": ["idle_inhibitor","cpu","memory","battery","pulseaudio","clock","tray"],
+	"modules-center": ["sway/window", "custom/spotify", "custom/ncspot"],
+	"modules-right": ["idle_inhibitor","cpu", "temperature","memory","battery","pulseaudio","clock","tray"],
 
 
 	"sway/window": {
@@ -58,8 +58,21 @@
     "return-type": "json",
     "on-click": "playerctl -p spotify play-pause",
     "on-scroll-up": "playerctl -p spotify volume 0.05+",
+	"on-click-right": "playerctl -p spotify next",
+	"on-click-middle": "playerctl -p spotify previous",
     "on-scroll-down": "playerctl -p spotify volume 0.05-"
 },
+	"custom/ncspot": {
+		"exec": "/usr/bin/python3 $HOME/.config/waybar/mediaplayer.py --player ncspot",
+		"format": "{}  ",
+		"return-type": "json",
+		"on-click": "playerctl -p ncspot play-pause",
+		"on-click-right": "playerctl -p ncspot next",
+		"on-click-middle": "playerctl -p ncspot previous",
+		"on-scroll-up": "playerctl -p ncspot volume 0.05+",
+		"on-scroll-down": "playerctl -p ncspot volume 0.05-"
+
+	},
 
 	"sway/workspaces": {
 		"persistent-workspaces": {
@@ -78,6 +91,12 @@
 	"cpu": {
 		"interval": 10,
 		"format": "CPU: {usage}% Load: {load}"
+	},
+
+	"temperature": {
+		"critical-threshold": 75,
+		"format-critical": "{temperatureC}°C",
+		"thermal-zone": 6
 	},
 	
 	"memory": {
@@ -102,16 +121,24 @@
 		"format": "{icon} {volume}%",
 		"format-muted": " {volume}%",
 		"format-icons": {
-			"alsa_output.usb-SteelSeries_SteelSeries_Arctis_5_00000000-00.analog-game": "",
-			"alsa_output.usb-SteelSeries_SteelSeries_Arctis_5_00000000-00.analog-chat": "",
-			"default": ["\uf026", "\uf027", "\uf028"]
+			//"alsa_output.usb-SteelSeries_SteelSeries_Arctis_5_00000000-00.analog-game": "",
+			//"alsa_output.usb-SteelSeries_SteelSeries_Arctis_5_00000000-00.analog-chat": "",
+			//"default": ["\uf026", "\uf027", "\uf028"]
 		},
-		"on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-		"on-click-right": "pavucontrol"
+		"on-click": "echo pee",//"pactl set-sink-mute @DEFAULT_SINK@ toggle",
+		"on-click-right": "alacritty -e alsamixer"
 	},
 
 	"tray": {
 		"icon-size": 20,
 		"spacing": 10
+	},
+
+	"battery": {
+		"format": "{capacity}% {time}",
+		"states": {
+			"warning": 30,
+			"critical": 15
+		}
 	}
 }

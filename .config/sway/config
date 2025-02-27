@@ -23,7 +23,7 @@ set $menu fuzzel
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 #output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-output * bg /home/danakongur/pictures/AmogOS-Wallpapers/DarkMode.png fill
+output * bg /home/danakongur/downloads/bingus-wallpaper.jpg fill
 #output * bg /home/danakongur/pictures/white.jpg fill
 #
 # Example configuration:
@@ -44,17 +44,22 @@ output * bg /home/danakongur/pictures/AmogOS-Wallpapers/DarkMode.png fill
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
+# autostart things
+exec gentoo-pipewire-launcher
+exec dunst
+
+
 
 ### Input configuration
 #
 # Example configuration:
 #
-#   input "2:14:SynPS/2_Synaptics_TouchPad" {
-#       dwt enabled
-#       tap enabled
-#       natural_scroll enabled
-#       middle_emulation enabled
-#   }
+   input "2:7:SynPS/2_Synaptics_TouchPad" {
+       dwt enabled
+       tap enabled
+       natural_scroll disabled
+       middle_emulation enabled
+}
 #
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
@@ -204,6 +209,7 @@ mode "resize" {
     bindsym Right resize grow width 10px
 
     # Return to default mode
+	bindsym --to-code $mod+r mode "default"
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
@@ -213,9 +219,12 @@ bindsym --to-code $mod+r mode "resize"
 #
     set $audiojump 2.5
     # Special keys to adjust volume via PulseAudio
-    bindsym --locked XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle
-    bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -$audiojump%
-    bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK@ +$audiojump%
+    bindsym --locked XF86AudioMute exec pactl set-sink-volume \@DEFAULT_SINK\@ 0
+	#pactl set-sink-mute \@DEFAULT_SINK@ toggle
+    bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK\@ -$audiojump%
+	#pactl set-sink-volume \@DEFAULT_SINK@ -$audiojump%
+    bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK\@ +$audiojump%
+	#pactl set-sink-volume \@DEFAULT_SINK@ +$audiojump%
     bindsym --locked XF86AudioMicMute exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle
     
     bindsym --locked XF86AudioPlay exec playerctl play-pause
@@ -236,7 +245,8 @@ bindsym --to-code $mod+r mode "resize"
     bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
     bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
     # Special key to take a screenshot with grim
-    bindsym Print exec gscreenshot
+    bindsym Print exec screenshot
+	# was thinking about making a save to file shortcut bindsym Shift+Print exec 
 
 
 # default behavior for programs
@@ -250,5 +260,16 @@ for_window [app_id="org.pulseaudio.pavucontrol"] floating enable
 bar  {
 	swaybar_command waybar
 }
+
+
+
+
+# looks
+
+title_align center
+
+client.focused #123123 #123123 #ffffff
+
+
 
 include /etc/sway/config.d/*
