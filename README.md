@@ -2,6 +2,8 @@
 
 I use i3wm on my laptop and sway on my desktop
 
+Well i have switched to sway on my laptop
+
 To do:
 - fix dunst being ugly for no reason
 - make sway windows look cool
